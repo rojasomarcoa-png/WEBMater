@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-white text-ink-900 font-sans;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  ::selection {
+    @apply bg-primary-200 text-primary-900;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary-500 ring-offset-2 ring-offset-white rounded-sm;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300
+           focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none
+           active:scale-[0.97] select-none;
+  }
+  .btn-primary {
+    @apply btn bg-primary-600 text-white px-6 py-3 text-[0.95rem] shadow-soft
+           hover:bg-primary-700 hover:shadow-lift;
+  }
+  .btn-secondary {
+    @apply btn bg-white text-primary-700 border-2 border-primary-200 px-6 py-3 text-[0.95rem]
+           hover:border-primary-400 hover:bg-primary-50;
+  }
+  .btn-accent {
+    @apply btn bg-accent-500 text-white px-6 py-3 text-[0.95rem] shadow-soft
+           hover:bg-accent-600 hover:shadow-lift;
+  }
+  .btn-ghost {
+    @apply btn text-ink-700 px-4 py-2 text-[0.9rem] hover:bg-ink-50;
+  }
+
+  .card {
+    @apply bg-white rounded-3xl border border-ink-100 shadow-card transition-all duration-500;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-primary-600;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .animate-ken-burns {
+    animation: none !important;
+  }
+}
+
+.text-balance {
+  text-wrap: balance;
+}
